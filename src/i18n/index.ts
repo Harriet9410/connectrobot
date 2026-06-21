@@ -203,6 +203,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'Saved Maps': '已保存地图',
     'Delete': '删除',
     'ROS Log': 'ROS 日志',
+    'Run on robot terminal:': '在机器人终端运行:',
+    'Terminal 1: ROS core': '终端1: ROS 核心',
+    'Terminal 2: SLAM': '终端2: SLAM',
+    'Terminal 3: rosbridge': '终端3: rosbridge',
+    'Then click Start SLAM. Map will appear when /map topic is received.': '然后点击启动 SLAM。收到 /map 话题后地图会自动出现。',
   },
   ja: {
     'MRReP / MRHaD': 'MRReP / MRHaD',
@@ -405,6 +410,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'Saved Maps': '保存済みマップ',
     'Delete': '削除',
     'ROS Log': 'ROS ログ',
+    'Run on robot terminal:': 'ロボット端末で実行:',
+    'Terminal 1: ROS core': '端末1: ROS コア',
+    'Terminal 2: SLAM': '端末2: SLAM',
+    'Terminal 3: rosbridge': '端末3: rosbridge',
+    'Then click Start SLAM. Map will appear when /map topic is received.': 'その後Start SLAMをクリック。/mapトピックを受信するとマップが表示されます。',
   },
 };
 

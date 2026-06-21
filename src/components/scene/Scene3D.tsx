@@ -449,6 +449,9 @@ export function Scene3D({ mode, followRobot }: { mode: AppMode; followRobot: boo
           if (rosStore.isMock) {
             const bot = fleet.robots.find((r) => r.id === activeId);
             if (bot && !bot.navigating) { useUndoStore.getState().pushUndo(); fleet.addWaypoint(activeId, pt); }
+          } else {
+            const bot = fleet.robots.find((r) => r.id === activeId);
+            if (bot && !bot.navigating) { fleet.addWaypoint(activeId, pt); }
           }
         } else if (mode === 'mapedit' && rosStore.isMock) {
           mockPlaceRobot(pt.x, pt.z);

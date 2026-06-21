@@ -242,6 +242,24 @@ export function SlamPanel() {
         </div>
       )}
 
+      {!slamActive && !hasGrid && (
+        <div className="bg-amber-900/30 border border-amber-600/40 rounded p-2 space-y-1">
+          <div className="text-[9px] text-amber-300 font-bold">{t('Run on robot terminal:', locale)}</div>
+          <div className="text-[9px] text-amber-200/80 font-mono bg-gray-900/60 rounded px-2 py-1.5 space-y-0.5 overflow-x-auto">
+            <div># {t('Terminal 1: ROS core', locale)}</div>
+            <div>roscore</div>
+            <div className="mt-1"># {t('Terminal 2: SLAM', locale)}</div>
+            {slamMethod === 'gmapping' && <div>rosrun gmapping slam_gmapping</div>}
+            {slamMethod === 'cartographer' && <div>roslaunch cartographer_ros demo.lua</div>}
+            {slamMethod === 'hector' && <div>roslaunch hector_slam launch</div>}
+            {slamMethod === 'rtabmap' && <div>roslaunch rtabmap_ros rtabmap.launch</div>}
+            <div className="mt-1"># {t('Terminal 3: rosbridge', locale)}</div>
+            <div>roslaunch rosbridge_server rosbridge_websocket_launch.launch</div>
+          </div>
+          <div className="text-[8px] text-amber-400/60">{t('Then click Start SLAM. Map will appear when /map topic is received.', locale)}</div>
+        </div>
+      )}
+
       <div className="flex gap-2 items-center">
         <label className="flex items-center gap-1 text-[10px] text-gray-300 cursor-pointer">
           <input
@@ -276,22 +294,6 @@ export function SlamPanel() {
           />
         </div>
       )}
-
-      <div className="text-[9px] text-gray-500 space-y-0.5">
-        <div>{t('Robot side requires:', locale)}</div>
-        <div className="pl-2 text-gray-400 font-mono">rosbridge_server (port 9090)</div>
-        <div className="pl-2 text-gray-400 font-mono">{SLAM_METHOD_LABELS[slamMethod]}</div>
-        {isDepthCamera && (
-          <>
-            <div className="pl-2 text-gray-400 font-mono">{SENSOR_LABELS[sensorDevice]} (USB 3.0)</div>
-            <div className="pl-2 text-gray-400 font-mono">depthimage_to_laserscan</div>
-          </>
-        )}
-        {slamMethod === 'gmapping' && <div className="pl-2 text-gray-400 font-mono">+ odometry (rf2o / wheel)</div>}
-        {slamMethod === 'cartographer' && !isDepthCamera && <div className="pl-2 text-gray-400 font-mono">+ odometry (optional)</div>}
-        {slamMethod === 'hector' && <div className="pl-2 text-gray-400 font-mono">no odometry required</div>}
-        {slamMethod === 'rtabmap' && <div className="pl-2 text-gray-400 font-mono">+ rf2o_laser_odometry</div>}
-      </div>
     </div>
   );
 }
